@@ -1,5 +1,4 @@
-import { PostCreate } from "./components/PostCreate";
-import { PostList } from "./components/PostList";
+import { PostCreate, PostList } from "./components/";
 
 function App() {
   return (
