@@ -7,11 +7,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/events", (req, res) => {
+app.post("/events", async (req, res) => {
   const event = req.body;
-  axios.post("http://localhost:4000/events", event);
-  axios.post("http://localhost:4001/events", event);
-  axios.post("http://localhost:4002/events", event);
+  await axios.post("http://localhost:4000/events", event).catch((err) => {
+    console.log(err.message, "post");
+  });
+  await axios.post("http://localhost:4001/events", event).catch((err) => {
+    console.log(err.message, "comments");
+  });
+  await axios.post("http://localhost:4002/events", event).catch((err) => {
+    console.log(err.message, "query");
+  });
 
   res.send({ status: "Ok" });
 });
